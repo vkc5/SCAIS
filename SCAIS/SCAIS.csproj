@@ -52,11 +52,65 @@
     <Compile Include="Admin\AdminMainForm.Designer.cs">
       <DependentUpon>AdminMainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Pages\AdminAssignAdviseesPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Admin\Pages\AdminAssignAdviseesPage.Designer.cs">
+      <DependentUpon>AdminAssignAdviseesPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Pages\AdminCurriculumPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Admin\Pages\AdminCurriculumPage.Designer.cs">
+      <DependentUpon>AdminCurriculumPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Pages\AdminDashboardPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Admin\Pages\AdminDashboardPage.Designer.cs">
+      <DependentUpon>AdminDashboardPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Pages\AdminManageCoursesPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Admin\Pages\AdminManageCoursesPage.Designer.cs">
+      <DependentUpon>AdminManageCoursesPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Pages\AdminManageUsersPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Admin\Pages\AdminManageUsersPage.Designer.cs">
+      <DependentUpon>AdminManageUsersPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Adviser\AdviserMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Adviser\AdviserMainForm.Designer.cs">
       <DependentUpon>AdviserMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Adviser\Pages\AdviserDashboardPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Adviser\Pages\AdviserDashboardPage.Designer.cs">
+      <DependentUpon>AdviserDashboardPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Adviser\Pages\AdviserMyAdviseesPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Adviser\Pages\AdviserMyAdviseesPage.Designer.cs">
+      <DependentUpon>AdviserMyAdviseesPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Adviser\Pages\AdviserRecommendedCoursesPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Adviser\Pages\AdviserRecommendedCoursesPage.Designer.cs">
+      <DependentUpon>AdviserRecommendedCoursesPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Adviser\Pages\AdviserReportsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Adviser\Pages\AdviserReportsPage.Designer.cs">
+      <DependentUpon>AdviserReportsPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -66,6 +120,36 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Student\Pages\StudentAcademicRecordPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Student\Pages\StudentAcademicRecordPage.Designer.cs">
+      <DependentUpon>StudentAcademicRecordPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Student\Pages\StudentAdviserFeedbackPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Student\Pages\StudentAdviserFeedbackPage.Designer.cs">
+      <DependentUpon>StudentAdviserFeedbackPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Student\Pages\StudentDashboardPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Student\Pages\StudentDashboardPage.Designer.cs">
+      <DependentUpon>StudentDashboardPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Student\Pages\StudentEligibleCoursesPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Student\Pages\StudentEligibleCoursesPage.Designer.cs">
+      <DependentUpon>StudentEligibleCoursesPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Student\Pages\StudentSubmitCoursePlanPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Student\Pages\StudentSubmitCoursePlanPage.Designer.cs">
+      <DependentUpon>StudentSubmitCoursePlanPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Student\StudentMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,8 +159,35 @@
     <EmbeddedResource Include="Admin\AdminMainForm.resx">
       <DependentUpon>AdminMainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Pages\AdminAssignAdviseesPage.resx">
+      <DependentUpon>AdminAssignAdviseesPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Pages\AdminCurriculumPage.resx">
+      <DependentUpon>AdminCurriculumPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Pages\AdminDashboardPage.resx">
+      <DependentUpon>AdminDashboardPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Pages\AdminManageCoursesPage.resx">
+      <DependentUpon>AdminManageCoursesPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Pages\AdminManageUsersPage.resx">
+      <DependentUpon>AdminManageUsersPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Adviser\AdviserMainForm.resx">
       <DependentUpon>AdviserMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Adviser\Pages\AdviserDashboardPage.resx">
+      <DependentUpon>AdviserDashboardPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Adviser\Pages\AdviserMyAdviseesPage.resx">
+      <DependentUpon>AdviserMyAdviseesPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Adviser\Pages\AdviserRecommendedCoursesPage.resx">
+      <DependentUpon>AdviserRecommendedCoursesPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Adviser\Pages\AdviserReportsPage.resx">
+      <DependentUpon>AdviserReportsPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -90,6 +201,21 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Student\Pages\StudentAcademicRecordPage.resx">
+      <DependentUpon>StudentAcademicRecordPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Student\Pages\StudentAdviserFeedbackPage.resx">
+      <DependentUpon>StudentAdviserFeedbackPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Student\Pages\StudentDashboardPage.resx">
+      <DependentUpon>StudentDashboardPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Student\Pages\StudentEligibleCoursesPage.resx">
+      <DependentUpon>StudentEligibleCoursesPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Student\Pages\StudentSubmitCoursePlanPage.resx">
+      <DependentUpon>StudentSubmitCoursePlanPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Student\StudentMainForm.resx">
       <DependentUpon>StudentMainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -106,10 +232,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Admin\Pages\" />
-    <Folder Include="Adviser\Pages\" />
-    <Folder Include="Student\Pages\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

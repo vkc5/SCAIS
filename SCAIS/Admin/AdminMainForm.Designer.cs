@@ -28,35 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.pnlContent = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
+            this.pnlSidebar = new System.Windows.Forms.Panel();
+            this.btnExit = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.panel3.SuspendLayout();
+            this.btnCurriculum = new System.Windows.Forms.Button();
+            this.btnAssignAdvisees = new System.Windows.Forms.Button();
+            this.btnManageCourses = new System.Windows.Forms.Button();
+            this.btnManageUsers = new System.Windows.Forms.Button();
+            this.btnDashboard = new System.Windows.Forms.Button();
+            this.pnlContent.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.pnlSidebar.SuspendLayout();
             this.panel4.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel3
+            // pnlContent
             // 
-            this.panel3.Controls.Add(this.label3);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(319, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(932, 855);
-            this.panel3.TabIndex = 3;
+            this.pnlContent.Controls.Add(this.label3);
+            this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlContent.Location = new System.Drawing.Point(319, 0);
+            this.pnlContent.Name = "pnlContent";
+            this.pnlContent.Size = new System.Drawing.Size(932, 855);
+            this.pnlContent.TabIndex = 3;
             // 
             // label3
             // 
@@ -70,36 +70,40 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.pnlSidebar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(319, 855);
             this.panel1.TabIndex = 2;
             // 
-            // panel2
+            // pnlSidebar
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(43)))), ((int)(((byte)(57)))));
-            this.panel2.Controls.Add(this.button6);
-            this.panel2.Controls.Add(this.panel4);
-            this.panel2.Controls.Add(this.tableLayoutPanel1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(319, 855);
-            this.panel2.TabIndex = 1;
+            this.pnlSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(43)))), ((int)(((byte)(57)))));
+            this.pnlSidebar.Controls.Add(this.btnExit);
+            this.pnlSidebar.Controls.Add(this.panel4);
+            this.pnlSidebar.Controls.Add(this.tableLayoutPanel1);
+            this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlSidebar.Location = new System.Drawing.Point(0, 0);
+            this.pnlSidebar.Name = "pnlSidebar";
+            this.pnlSidebar.Size = new System.Drawing.Size(319, 855);
+            this.pnlSidebar.TabIndex = 1;
             // 
-            // button6
+            // btnExit
             // 
-            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(35)))), ((int)(((byte)(48)))));
-            this.button6.Font = new System.Drawing.Font("Yu Gothic UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.ForeColor = System.Drawing.Color.Red;
-            this.button6.Location = new System.Drawing.Point(15, 765);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(283, 63);
-            this.button6.TabIndex = 2;
-            this.button6.Text = "Exit";
-            this.button6.UseVisualStyleBackColor = false;
+            this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(35)))), ((int)(((byte)(48)))));
+            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExit.FlatAppearance.BorderSize = 0;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Font = new System.Drawing.Font("Yu Gothic UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.ForeColor = System.Drawing.Color.Red;
+            this.btnExit.Location = new System.Drawing.Point(15, 765);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(283, 63);
+            this.btnExit.TabIndex = 2;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.button6_Click);
             // 
             // panel4
             // 
@@ -137,11 +141,11 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.button5, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.button4, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.button3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.button2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.button1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnCurriculum, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btnAssignAdvisees, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.btnManageCourses, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnManageUsers, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnDashboard, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 151);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
@@ -154,85 +158,106 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(289, 348);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // button5
+            // btnCurriculum
             // 
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
-            this.button5.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.SystemColors.Window;
-            this.button5.Location = new System.Drawing.Point(3, 279);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(283, 63);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Curriculum";
-            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.UseVisualStyleBackColor = false;
+            this.btnCurriculum.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
+            this.btnCurriculum.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCurriculum.FlatAppearance.BorderSize = 0;
+            this.btnCurriculum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCurriculum.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCurriculum.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnCurriculum.Location = new System.Drawing.Point(3, 279);
+            this.btnCurriculum.Name = "btnCurriculum";
+            this.btnCurriculum.Size = new System.Drawing.Size(283, 63);
+            this.btnCurriculum.TabIndex = 4;
+            this.btnCurriculum.Text = "Curriculum";
+            this.btnCurriculum.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCurriculum.UseVisualStyleBackColor = false;
+            this.btnCurriculum.Click += new System.EventHandler(this.btnCurriculum_Click);
             // 
-            // button4
+            // btnAssignAdvisees
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
-            this.button4.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.SystemColors.Window;
-            this.button4.Location = new System.Drawing.Point(3, 210);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(283, 63);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Assign Advisees ";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.UseVisualStyleBackColor = false;
+            this.btnAssignAdvisees.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
+            this.btnAssignAdvisees.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAssignAdvisees.FlatAppearance.BorderSize = 0;
+            this.btnAssignAdvisees.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAssignAdvisees.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAssignAdvisees.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnAssignAdvisees.Location = new System.Drawing.Point(3, 210);
+            this.btnAssignAdvisees.Name = "btnAssignAdvisees";
+            this.btnAssignAdvisees.Size = new System.Drawing.Size(283, 63);
+            this.btnAssignAdvisees.TabIndex = 3;
+            this.btnAssignAdvisees.Text = "Assign Advisees ";
+            this.btnAssignAdvisees.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAssignAdvisees.UseVisualStyleBackColor = false;
+            this.btnAssignAdvisees.Click += new System.EventHandler(this.btnAssignAdvisees_Click);
             // 
-            // button3
+            // btnManageCourses
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
-            this.button3.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.SystemColors.Window;
-            this.button3.Location = new System.Drawing.Point(3, 141);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(283, 63);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Manage Courses";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnManageCourses.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
+            this.btnManageCourses.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnManageCourses.FlatAppearance.BorderSize = 0;
+            this.btnManageCourses.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnManageCourses.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManageCourses.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnManageCourses.Location = new System.Drawing.Point(3, 141);
+            this.btnManageCourses.Name = "btnManageCourses";
+            this.btnManageCourses.Size = new System.Drawing.Size(283, 63);
+            this.btnManageCourses.TabIndex = 2;
+            this.btnManageCourses.Text = "Manage Courses";
+            this.btnManageCourses.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnManageCourses.UseVisualStyleBackColor = false;
+            this.btnManageCourses.Click += new System.EventHandler(this.btnManageCourses_Click);
             // 
-            // button2
+            // btnManageUsers
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
-            this.button2.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.Window;
-            this.button2.Location = new System.Drawing.Point(3, 72);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(283, 63);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Manage Users";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnManageUsers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
+            this.btnManageUsers.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnManageUsers.FlatAppearance.BorderSize = 0;
+            this.btnManageUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnManageUsers.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManageUsers.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnManageUsers.Location = new System.Drawing.Point(3, 72);
+            this.btnManageUsers.Name = "btnManageUsers";
+            this.btnManageUsers.Size = new System.Drawing.Size(283, 63);
+            this.btnManageUsers.TabIndex = 1;
+            this.btnManageUsers.Text = "Manage Users";
+            this.btnManageUsers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnManageUsers.UseVisualStyleBackColor = false;
+            this.btnManageUsers.Click += new System.EventHandler(this.btnManageUsers_Click);
             // 
-            // button1
+            // btnDashboard
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
-            this.button1.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.Window;
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(283, 63);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Dashboard";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnDashboard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
+            this.btnDashboard.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDashboard.FlatAppearance.BorderSize = 0;
+            this.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDashboard.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDashboard.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnDashboard.Location = new System.Drawing.Point(3, 3);
+            this.btnDashboard.Name = "btnDashboard";
+            this.btnDashboard.Size = new System.Drawing.Size(283, 63);
+            this.btnDashboard.TabIndex = 0;
+            this.btnDashboard.Text = "Dashboard";
+            this.btnDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDashboard.UseVisualStyleBackColor = false;
+            this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
             // 
             // AdminMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1251, 855);
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.pnlContent);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "AdminMainForm";
             this.Text = "AdminMainForm";
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.Load += new System.EventHandler(this.AdminMainForm_Load);
+            this.pnlContent.ResumeLayout(false);
+            this.pnlContent.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
+            this.pnlSidebar.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -242,19 +267,19 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel pnlContent;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Panel pnlSidebar;
+        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCurriculum;
+        private System.Windows.Forms.Button btnAssignAdvisees;
+        private System.Windows.Forms.Button btnManageCourses;
+        private System.Windows.Forms.Button btnManageUsers;
+        private System.Windows.Forms.Button btnDashboard;
     }
 }

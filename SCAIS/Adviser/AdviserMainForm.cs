@@ -28,6 +28,8 @@ namespace SCAIS.Adviser.Pages
             _pages["MyAdvisees"] = new AdviserMyAdviseesPage();
             _pages["RecommendedCourses"] = new AdviserRecommendedCoursesPage();
             _pages["Reports"] = new AdviserReportsPage();
+            _pages["StudentProfile"] = new AdviserStudentProfilePage();   // NEW
+            _pages["PlanReview"] = new AdviserCoursePlanReviewPage();             // page 2
 
             foreach (UserControl page in _pages.Values)
             {
@@ -35,6 +37,29 @@ namespace SCAIS.Adviser.Pages
                 page.Visible = false;
                 pnlContent.Controls.Add(page);
             }
+            var dashboard = (AdviserDashboardPage)_pages["Dashboard"];
+            dashboard.ViewStudentRequested = (studentId) =>
+            {
+                var profile = (AdviserStudentProfilePage)_pages["StudentProfile"];
+                profile.LoadStudent(studentId);
+                ShowPage("StudentProfile");
+            };
+
+            var studentProfile = (AdviserStudentProfilePage)_pages["StudentProfile"];
+            studentProfile.BackRequested = () =>
+            {
+                ShowPage("Dashboard"); // back goes to dashboard
+            };
+
+            var p1 = (AdviserRecommendedCoursesPage)_pages["RecommendedCourses"];
+            var p2 = (AdviserCoursePlanReviewPage)_pages["PlanReview"];
+
+            p1.ViewPlanRequested = (coursePlanId) =>
+            {
+                p2.CurrentAdviserId = "ADV001";
+                p2.LoadPlan(coursePlanId);
+                ShowPage("PlanReview");
+            };
         }
 
         private void ShowPage(string key)
@@ -71,6 +96,9 @@ namespace SCAIS.Adviser.Pages
 
         private void btnReports_Click(object sender, EventArgs e)
         {
+            var reports = (AdviserReportsPage)_pages["Reports"];
+            reports.CurrentAdviserId = "ADV001";   // ✅ static for now
+            reports.RefreshPage();
             ShowPage("Reports");
 
         }

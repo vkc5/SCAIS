@@ -59,6 +59,7 @@
             this.Controls.Add(this.label3);
             this.Name = "AdviserMyAdviseesPage";
             this.Size = new System.Drawing.Size(932, 855);
+            this.Load += new System.EventHandler(this.AdviserMyAdviseesPage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

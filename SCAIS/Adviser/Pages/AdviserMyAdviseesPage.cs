@@ -12,9 +12,15 @@ namespace SCAIS.Adviser.Pages
 {
     public partial class AdviserMyAdviseesPage : UserControl
     {
+
         public AdviserMyAdviseesPage()
         {
             InitializeComponent();
+        }
+
+        private void AdviserMyAdviseesPage_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

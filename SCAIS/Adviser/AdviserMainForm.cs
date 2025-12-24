@@ -28,8 +28,8 @@ namespace SCAIS.Adviser.Pages
             _pages["MyAdvisees"] = new AdviserMyAdviseesPage();
             _pages["RecommendedCourses"] = new AdviserRecommendedCoursesPage();
             _pages["Reports"] = new AdviserReportsPage();
-            _pages["StudentProfile"] = new AdviserStudentProfilePage();   // NEW
-            _pages["PlanReview"] = new AdviserCoursePlanReviewPage();             // page 2
+            _pages["StudentProfile"] = new AdviserStudentProfilePage();
+            _pages["PlanReview"] = new AdviserCoursePlanReviewPage();
 
             foreach (UserControl page in _pages.Values)
             {
@@ -37,30 +37,55 @@ namespace SCAIS.Adviser.Pages
                 page.Visible = false;
                 pnlContent.Controls.Add(page);
             }
+
+            // ✅ Declare ONCE
             var dashboard = (AdviserDashboardPage)_pages["Dashboard"];
-            dashboard.ViewStudentRequested = (studentId) =>
+            var profile = (AdviserStudentProfilePage)_pages["StudentProfile"];
+            var rec = (AdviserRecommendedCoursesPage)_pages["RecommendedCourses"];
+            var p2 = (AdviserCoursePlanReviewPage)_pages["PlanReview"];
+
+            // Dashboard → Student Profile
+            dashboard.ViewStudentRequested += (studentId) =>
             {
-                var profile = (AdviserStudentProfilePage)_pages["StudentProfile"];
                 profile.LoadStudent(studentId);
                 ShowPage("StudentProfile");
             };
 
-            var studentProfile = (AdviserStudentProfilePage)_pages["StudentProfile"];
-            studentProfile.BackRequested = () =>
+            // Student Profile → Dashboard
+            profile.BackRequested += () =>
             {
-                ShowPage("Dashboard"); // back goes to dashboard
+                ShowPage("Dashboard");
             };
 
-            var p1 = (AdviserRecommendedCoursesPage)_pages["RecommendedCourses"];
-            var p2 = (AdviserCoursePlanReviewPage)_pages["PlanReview"];
-
-            p1.ViewPlanRequested = (coursePlanId) =>
+            // Recommended Courses → Plan Review
+            rec.ViewPlanRequested += (coursePlanId) =>
             {
                 p2.CurrentAdviserId = "ADV001";
                 p2.LoadPlan(coursePlanId);
                 ShowPage("PlanReview");
             };
+
+            // Plan Review → Recommended Courses
+            p2.BackRequested += () =>
+            {
+                ShowPage("RecommendedCourses");
+            };
+
+            // Student Profile → Recommended Courses (FOCUS STUDENT ✅)
+            profile.RecommendCoursesRequested += (studentId) =>
+            {
+                rec.FocusStudent(studentId);
+                ShowPage("RecommendedCourses");
+            };
+
+            var advisees = (AdviserMyAdviseesPage)_pages["MyAdvisees"];
+            advisees.RecommendCoursesRequested += (studentId) =>
+            {
+                rec.FocusStudent(studentId);
+                ShowPage("RecommendedCourses");
+            };
         }
+
 
         private void ShowPage(string key)
         {

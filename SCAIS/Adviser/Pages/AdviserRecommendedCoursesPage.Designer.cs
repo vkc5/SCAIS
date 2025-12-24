@@ -123,7 +123,7 @@
             this.lblPageTitle.Name = "lblPageTitle";
             this.lblPageTitle.Size = new System.Drawing.Size(228, 25);
             this.lblPageTitle.TabIndex = 11;
-            this.lblPageTitle.Text = "Student Academic Profile";
+            this.lblPageTitle.Text = "Course Recommendation";
             // 
             // AdviserRecommendedCoursesPage
             // 

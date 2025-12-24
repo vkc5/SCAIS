@@ -130,9 +130,9 @@
             this.label13.ForeColor = System.Drawing.SystemColors.WindowText;
             this.label13.Location = new System.Drawing.Point(19, 15);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(175, 25);
+            this.label13.Size = new System.Drawing.Size(155, 25);
             this.label13.TabIndex = 15;
-            this.label13.Text = "Student Information";
+            this.label13.Text = "Academic History";
             // 
             // label14
             // 

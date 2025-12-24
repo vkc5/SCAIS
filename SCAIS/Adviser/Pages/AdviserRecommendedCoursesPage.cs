@@ -14,6 +14,7 @@ namespace SCAIS.Adviser.Pages
 {
     public partial class AdviserRecommendedCoursesPage : UserControl
     {
+
         public string CurrentAdviserId { get; set; } = "ADV001"; // static for now
 
         // This is the navigation callback to open Page 2 later
@@ -35,6 +36,23 @@ namespace SCAIS.Adviser.Pages
         private void AdviserCoursePlansPage_Load(object sender, EventArgs e)
         {
             LoadPlans();
+        }
+
+        public void FocusStudent(string studentId)
+        {
+            // 1) Make sure data is loaded
+            if (_dt == null)
+                LoadPlans();
+
+            // 2) Put student ID in search box
+            txtSearch.Text = studentId;
+
+            // 3) Reset status filter (optional but recommended)
+            cmbStatus.SelectedIndex = 0; // "All"
+
+            // 4) Apply filters (TextChanged usually fires automatically,
+            // but calling it explicitly is safer)
+            ApplyFilters();
         }
 
         public void LoadPlans()

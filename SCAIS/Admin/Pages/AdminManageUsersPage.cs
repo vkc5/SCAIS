@@ -25,7 +25,6 @@ namespace SCAIS.Admin.Pages
             InitializeComponent();
             LoadUsers();
 
-            // Wire up events
             txtSearch.TextChanged += TxtSearch_TextChanged;
             roleFilter.SelectedIndexChanged += RoleFilter_SelectedIndexChanged;
 
@@ -117,7 +116,7 @@ namespace SCAIS.Admin.Pages
         {
         }
 
-        // Apply both username search and role filter
+        //  both username search and role filter
         private void ApplyFilters()
         {
             string search = txtSearch.Text.Trim().ToLower();

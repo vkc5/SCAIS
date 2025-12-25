@@ -47,6 +47,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>SCAIS Logo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System">
       <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
@@ -151,6 +154,7 @@
     <Compile Include="Core\Builders\CoursePlan\AdviserAdjustedPlanBuilder.cs" />
     <Compile Include="Core\Builders\CoursePlan\CoursePlanDirector.cs" />
     <Compile Include="Core\Builders\CoursePlan\ICoursePlanBuilder.cs" />
+    <Compile Include="Core\Builders\CoursePlan\StudentCoursePlanBuilder.cs" />
     <Compile Include="Core\Database\Db.cs" />
     <Compile Include="Core\Models\CoursePlan\CoursePlanItem.cs" />
     <Compile Include="Core\Models\CoursePlan\CoursePlanProduct.cs" />
@@ -304,9 +308,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SCAIS_DB_log.ldf">
-      <DependentUpon>SCAIS_DB.mdf</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DependentUpon>SCAIS_DB.mdf</DependentUpon>
     </Content>
+    <Content Include="SCAIS Logo.ico" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

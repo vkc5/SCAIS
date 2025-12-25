@@ -282,5 +282,15 @@ ORDER BY sem.[Year], sem.Term, c.CourseCode;
         {
 
         }
+
+        private void label4_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblPageTitle_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

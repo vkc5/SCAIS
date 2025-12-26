@@ -32,5 +32,34 @@ namespace SCAIS.Core.Database
                 }
             }
         }
+
+        // For INSERT, UPDATE, DELETE - returns number of rows affected
+        public static int Execute(string sql, params SqlParameter[] parameters)
+        {
+            using (SqlConnection con = new SqlConnection(ConnStr))
+            using (SqlCommand cmd = new SqlCommand(sql, con))
+            {
+                if (parameters != null && parameters.Length > 0)
+                    cmd.Parameters.AddRange(parameters);
+
+                con.Open();
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        // For queries that return a single value (like COUNT, MAX, etc.)
+        public static object ExecuteScalar(string sql, params SqlParameter[] parameters)
+        {
+            using (SqlConnection con = new SqlConnection(ConnStr))
+            using (SqlCommand cmd = new SqlCommand(sql, con))
+            {
+                if (parameters != null && parameters.Length > 0)
+                    cmd.Parameters.AddRange(parameters);
+
+                con.Open();
+                return cmd.ExecuteScalar();
+            }
+        }
     }
 }
+

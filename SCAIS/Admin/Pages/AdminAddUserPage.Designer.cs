@@ -113,7 +113,7 @@
             this.StatusCombo.FormattingEnabled = true;
             this.StatusCombo.Items.AddRange(new object[] {
             "Active",
-            "In-Active"});
+            "Inactive"});
             this.StatusCombo.Location = new System.Drawing.Point(240, 419);
             this.StatusCombo.Name = "StatusCombo";
             this.StatusCombo.Size = new System.Drawing.Size(233, 21);
@@ -123,7 +123,7 @@
             // 
             this.RoleCombo.FormattingEnabled = true;
             this.RoleCombo.Items.AddRange(new object[] {
-            "Advisor",
+            "Adviser",
             "Student"});
             this.RoleCombo.Location = new System.Drawing.Point(240, 360);
             this.RoleCombo.Name = "RoleCombo";

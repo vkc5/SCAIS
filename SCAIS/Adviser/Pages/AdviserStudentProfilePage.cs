@@ -16,6 +16,8 @@ namespace SCAIS.Adviser.Pages
 {
     public partial class AdviserStudentProfilePage : UserControl
     {
+        public event Action<string> RecommendCoursesRequested;
+        private string _studentId; // store current loaded student
 
         // Student to show
         public string CurrentStudentId { get; private set; }
@@ -32,6 +34,7 @@ namespace SCAIS.Adviser.Pages
         public void LoadStudent(string studentId)
         {
             CurrentStudentId = studentId;
+            _studentId = studentId;
 
             LoadStudentHeader();
             LoadAcademicHistory();
@@ -190,7 +193,7 @@ ORDER BY sem.[Year], sem.Term, c.CourseCode;
 
         private void btnRecommendCourses_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Recommend Courses for " + CurrentStudentId);
+            RecommendCoursesRequested?.Invoke(_studentId);
 
         }
 
@@ -276,6 +279,16 @@ ORDER BY sem.[Year], sem.Term, c.CourseCode;
         }
 
         private void dgvHistory_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label4_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblPageTitle_Click_1(object sender, EventArgs e)
         {
 
         }

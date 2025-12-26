@@ -130,9 +130,9 @@
             this.label13.ForeColor = System.Drawing.SystemColors.WindowText;
             this.label13.Location = new System.Drawing.Point(19, 15);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(175, 25);
+            this.label13.Size = new System.Drawing.Size(155, 25);
             this.label13.TabIndex = 15;
-            this.label13.Text = "Student Information";
+            this.label13.Text = "Academic History";
             // 
             // label14
             // 
@@ -367,6 +367,7 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "─────────────────────────────────────────────────────────────────────────────────" +
     "───────────────────────";
+            this.label4.Click += new System.EventHandler(this.label4_Click_1);
             // 
             // lblPageTitle
             // 
@@ -378,6 +379,7 @@
             this.lblPageTitle.Size = new System.Drawing.Size(228, 25);
             this.lblPageTitle.TabIndex = 10;
             this.lblPageTitle.Text = "Student Academic Profile";
+            this.lblPageTitle.Click += new System.EventHandler(this.lblPageTitle_Click_1);
             // 
             // label3
             // 

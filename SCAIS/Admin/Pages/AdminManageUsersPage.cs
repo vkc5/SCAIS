@@ -177,7 +177,9 @@ namespace SCAIS.Admin.Pages
                     u.FullName,
                     u.Role,
                     u.Username,
-                    u.Status
+                    u.Status,
+                    "Edit",
+                    "Delete"
                 );
             }
 

@@ -74,6 +74,12 @@
     <Compile Include="Admin\AdminMainForm.Designer.cs">
       <DependentUpon>AdminMainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Pages\AdminAddUserPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Admin\Pages\AdminAddUserPage.Designer.cs">
+      <DependentUpon>AdminAddUserPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Pages\AdminAssignAdviseesPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -211,6 +217,9 @@
     </Compile>
     <EmbeddedResource Include="Admin\AdminMainForm.resx">
       <DependentUpon>AdminMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Pages\AdminAddUserPage.resx">
+      <DependentUpon>AdminAddUserPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\Pages\AdminAssignAdviseesPage.resx">
       <DependentUpon>AdminAssignAdviseesPage.cs</DependentUpon>

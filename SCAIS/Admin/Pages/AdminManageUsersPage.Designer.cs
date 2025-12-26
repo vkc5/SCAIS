@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.AddUserBtn = new System.Windows.Forms.Button();
@@ -36,16 +39,17 @@
             this.btnFilter = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.userGridView = new System.Windows.Forms.DataGridView();
+            this.pagenationPnl = new System.Windows.Forms.Panel();
+            this.userNumLab = new System.Windows.Forms.Label();
+            this.backBtn = new System.Windows.Forms.Button();
+            this.NextBtn = new System.Windows.Forms.Button();
             this.UserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Role = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Action = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pagenationPnl = new System.Windows.Forms.Panel();
-            this.NextBtn = new System.Windows.Forms.Button();
-            this.backBtn = new System.Windows.Forms.Button();
-            this.userNumLab = new System.Windows.Forms.Label();
+            this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.searchPnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userGridView)).BeginInit();
             this.pagenationPnl.SuspendLayout();
@@ -82,6 +86,7 @@
             this.AddUserBtn.TabIndex = 4;
             this.AddUserBtn.Text = "+ Add User";
             this.AddUserBtn.UseVisualStyleBackColor = false;
+            this.AddUserBtn.Click += new System.EventHandler(this.AddUserBtn_Click);
             // 
             // searchPnl
             // 
@@ -135,6 +140,9 @@
             // 
             // userGridView
             // 
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            this.userGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.userGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.userGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.userGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -143,17 +151,72 @@
             this.Role,
             this.Username,
             this.Status,
-            this.Action});
+            this.Edit,
+            this.Delete});
             this.userGridView.Location = new System.Drawing.Point(42, 262);
             this.userGridView.Name = "userGridView";
             this.userGridView.Size = new System.Drawing.Size(845, 451);
             this.userGridView.TabIndex = 6;
             this.userGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.userGridView_CellContentClick);
             // 
+            // pagenationPnl
+            // 
+            this.pagenationPnl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pagenationPnl.Controls.Add(this.userNumLab);
+            this.pagenationPnl.Controls.Add(this.backBtn);
+            this.pagenationPnl.Controls.Add(this.NextBtn);
+            this.pagenationPnl.Location = new System.Drawing.Point(42, 734);
+            this.pagenationPnl.Name = "pagenationPnl";
+            this.pagenationPnl.Size = new System.Drawing.Size(845, 74);
+            this.pagenationPnl.TabIndex = 7;
+            // 
+            // userNumLab
+            // 
+            this.userNumLab.AutoSize = true;
+            this.userNumLab.Location = new System.Drawing.Point(44, 28);
+            this.userNumLab.Name = "userNumLab";
+            this.userNumLab.Size = new System.Drawing.Size(79, 13);
+            this.userNumLab.TabIndex = 10;
+            this.userNumLab.Text = "Number of user";
+            this.userNumLab.Click += new System.EventHandler(this.userNumLab_Click);
+            // 
+            // backBtn
+            // 
+            this.backBtn.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.backBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.backBtn.FlatAppearance.BorderSize = 0;
+            this.backBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.backBtn.Font = new System.Drawing.Font("Yu Gothic UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backBtn.Location = new System.Drawing.Point(626, 15);
+            this.backBtn.Name = "backBtn";
+            this.backBtn.Size = new System.Drawing.Size(96, 42);
+            this.backBtn.TabIndex = 9;
+            this.backBtn.Text = "Back";
+            this.backBtn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.backBtn.UseVisualStyleBackColor = false;
+            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
+            // 
+            // NextBtn
+            // 
+            this.NextBtn.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.NextBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.NextBtn.FlatAppearance.BorderSize = 0;
+            this.NextBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.NextBtn.Font = new System.Drawing.Font("Yu Gothic UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NextBtn.Location = new System.Drawing.Point(728, 15);
+            this.NextBtn.Name = "NextBtn";
+            this.NextBtn.Size = new System.Drawing.Size(96, 42);
+            this.NextBtn.TabIndex = 8;
+            this.NextBtn.Text = "Next";
+            this.NextBtn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.NextBtn.UseVisualStyleBackColor = false;
+            this.NextBtn.Click += new System.EventHandler(this.NextBtn_Click);
+            // 
             // UserID
             // 
             this.UserID.HeaderText = "User ID";
             this.UserID.Name = "UserID";
+            this.UserID.ReadOnly = true;
             // 
             // FullName
             // 
@@ -175,60 +238,26 @@
             this.Status.HeaderText = "Status";
             this.Status.Name = "Status";
             // 
-            // Action
+            // Edit
             // 
-            this.Action.HeaderText = "Action";
-            this.Action.Name = "Action";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(2);
+            this.Edit.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Edit.HeaderText = "Edit";
+            this.Edit.Name = "Edit";
+            this.Edit.Text = "Edit";
             // 
-            // pagenationPnl
+            // Delete
             // 
-            this.pagenationPnl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pagenationPnl.Controls.Add(this.userNumLab);
-            this.pagenationPnl.Controls.Add(this.backBtn);
-            this.pagenationPnl.Controls.Add(this.NextBtn);
-            this.pagenationPnl.Location = new System.Drawing.Point(42, 734);
-            this.pagenationPnl.Name = "pagenationPnl";
-            this.pagenationPnl.Size = new System.Drawing.Size(845, 74);
-            this.pagenationPnl.TabIndex = 7;
-            // 
-            // NextBtn
-            // 
-            this.NextBtn.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.NextBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.NextBtn.FlatAppearance.BorderSize = 0;
-            this.NextBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.NextBtn.Font = new System.Drawing.Font("Yu Gothic UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NextBtn.Location = new System.Drawing.Point(728, 15);
-            this.NextBtn.Name = "NextBtn";
-            this.NextBtn.Size = new System.Drawing.Size(96, 42);
-            this.NextBtn.TabIndex = 8;
-            this.NextBtn.Text = "Next";
-            this.NextBtn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.NextBtn.UseVisualStyleBackColor = false;
-            // 
-            // backBtn
-            // 
-            this.backBtn.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.backBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.backBtn.FlatAppearance.BorderSize = 0;
-            this.backBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backBtn.Font = new System.Drawing.Font("Yu Gothic UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backBtn.Location = new System.Drawing.Point(626, 15);
-            this.backBtn.Name = "backBtn";
-            this.backBtn.Size = new System.Drawing.Size(96, 42);
-            this.backBtn.TabIndex = 9;
-            this.backBtn.Text = "Back";
-            this.backBtn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.backBtn.UseVisualStyleBackColor = false;
-            // 
-            // userNumLab
-            // 
-            this.userNumLab.AutoSize = true;
-            this.userNumLab.Location = new System.Drawing.Point(44, 28);
-            this.userNumLab.Name = "userNumLab";
-            this.userNumLab.Size = new System.Drawing.Size(79, 13);
-            this.userNumLab.TabIndex = 10;
-            this.userNumLab.Text = "Number of user";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(2);
+            this.Delete.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Delete.HeaderText = "Delete";
+            this.Delete.Name = "Delete";
+            this.Delete.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Delete.Text = "Delete";
             // 
             // AdminManageUsersPage
             // 
@@ -263,15 +292,16 @@
         private System.Windows.Forms.ComboBox roleFilter;
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.DataGridView userGridView;
+        private System.Windows.Forms.Panel pagenationPnl;
+        private System.Windows.Forms.Button backBtn;
+        private System.Windows.Forms.Button NextBtn;
+        private System.Windows.Forms.Label userNumLab;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserID;
         private System.Windows.Forms.DataGridViewTextBoxColumn FullName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Role;
         private System.Windows.Forms.DataGridViewTextBoxColumn Username;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Action;
-        private System.Windows.Forms.Panel pagenationPnl;
-        private System.Windows.Forms.Button backBtn;
-        private System.Windows.Forms.Button NextBtn;
-        private System.Windows.Forms.Label userNumLab;
+        private System.Windows.Forms.DataGridViewButtonColumn Edit;
+        private System.Windows.Forms.DataGridViewButtonColumn Delete;
     }
 }

@@ -332,6 +332,10 @@
     <None Include="Resources\back.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\group.png" />
+    <None Include="Resources\book.png" />
+    <None Include="Resources\delegation.png" />
+    <Content Include="SCAIS Logo.ico" />
     <Content Include="SCAIS_DB.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -339,7 +343,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>SCAIS_DB.mdf</DependentUpon>
     </Content>
-    <Content Include="SCAIS Logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

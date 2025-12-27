@@ -24,7 +24,10 @@ namespace SCAIS.Admin
         }
         private void RegisterPages()
         {
-            _pages["Dashboard"] = new AdminDashboardPage();
+            var dashboard = new AdminDashboardPage();
+            dashboard.NavigateRequested += (key) => ShowPage(key); // ✅ connect quick actions
+
+            _pages["Dashboard"] = dashboard;
             _pages["ManageUsers"] = new AdminManageUsersPage();
             _pages["ManageCourses"] = new AdminManageCoursesPage();
             _pages["AssignAdvisees"] = new AdminAssignAdviseesPage();
@@ -85,6 +88,11 @@ namespace SCAIS.Admin
         private void btnCurriculum_Click(object sender, EventArgs e)
         {
             ShowPage("Curriculum");
+
+        }
+
+        private void pnlContent_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }

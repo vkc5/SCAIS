@@ -41,7 +41,7 @@ namespace SCAIS.Admin
             }
         }
 
-        private void ShowPage(string key)
+        public void ShowPage(string key)
         {
             foreach (UserControl p in _pages.Values)
                 p.Visible = false;

@@ -166,6 +166,10 @@ WHERE aa.AdviserID = @AdviserID AND aa.IsActive = 1;
             }
         }
 
+        private void cmbSpecialization_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

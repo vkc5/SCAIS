@@ -16,13 +16,15 @@ namespace SCAIS.Student.Pages
     public partial class StudentAcademicRecordPage : UserControl
     {
         // Set this from login/session
-        public string CurrentStudentId { get; set; } = "STU001";
+        public string CurrentStudentId { get; set; }
 
         private DataTable _dtHistory;   // full history (before filter)
 
-        public StudentAcademicRecordPage()
+        public StudentAcademicRecordPage(string StudentId)
         {
             InitializeComponent();
+            CurrentStudentId = StudentId;
+
             SetupGrid();
             SetupFilters();
         }

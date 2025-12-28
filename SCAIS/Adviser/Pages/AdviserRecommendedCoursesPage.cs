@@ -15,16 +15,17 @@ namespace SCAIS.Adviser.Pages
     public partial class AdviserRecommendedCoursesPage : UserControl
     {
 
-        public string CurrentAdviserId { get; set; } = "ADV001"; // static for now
+        public string CurrentAdviserId { get; set; }
 
         // This is the navigation callback to open Page 2 later
         public Action<string> ViewPlanRequested { get; set; }  // sends CoursePlanID
 
         private DataTable _dt;
 
-        public AdviserRecommendedCoursesPage()
+        public AdviserRecommendedCoursesPage(string adviserId)
         {
             InitializeComponent();
+            CurrentAdviserId = adviserId;
             SetupGrid();
             SetupFilters();
         }

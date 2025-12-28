@@ -15,11 +15,12 @@ namespace SCAIS.Student.Pages
     public partial class StudentDashboardPage : UserControl
     {
         // Set this from login/session
-        public string CurrentStudentId { get; set; } = "STU001";
+        public string CurrentStudentId { get; set; }
 
-        public StudentDashboardPage()
+        public StudentDashboardPage(string StudentId)
         {
             InitializeComponent();
+            CurrentStudentId = StudentId;
             SetupGrids();
 
         }

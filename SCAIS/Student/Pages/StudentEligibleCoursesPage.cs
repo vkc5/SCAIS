@@ -15,11 +15,12 @@ namespace SCAIS.Student.Pages
     public partial class StudentEligibleCoursesPage : UserControl
     {
         // Set from session/login
-        public string CurrentStudentId { get; set; } = "STU001";
+        public string CurrentStudentId { get; set; }
 
-        public StudentEligibleCoursesPage()
+        public StudentEligibleCoursesPage(string StudentId)
         {
             InitializeComponent();
+            CurrentStudentId = StudentId;
             SetupGrids();
         }
 

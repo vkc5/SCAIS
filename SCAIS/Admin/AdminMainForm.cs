@@ -25,12 +25,20 @@ namespace SCAIS.Admin
         private void RegisterPages()
         {
             var dashboard = new AdminDashboardPage();
-            dashboard.NavigateRequested += (key) => ShowPage(key); // ✅ connect quick actions
+            dashboard.NavigateRequested += (key) => ShowPage(key);
 
             _pages["Dashboard"] = dashboard;
-            _pages["ManageUsers"] = new AdminManageUsersPage();
-            _pages["ManageCourses"] = new AdminManageCoursesPage();
-            _pages["AssignAdvisees"] = new AdminAssignAdviseesPage();
+
+            var manageUsers = new AdminManageUsersPage();
+            manageUsers.EditUserRequested += OpenEditUserPage;  // ✅ hook event
+            manageUsers.AddUserRequested += OpenAddUserPage;    // ✅ NEW
+            _pages["ManageUsers"] = manageUsers;
+
+            var manageCourses = new AdminManageCoursesPage();
+            manageCourses.EditCourseRequested += OpenEditCoursePage;   // ✅ hook event
+            manageCourses.AddCourseRequested += OpenAddCoursePage;    // ✅ hook add (we’ll add event below)
+            _pages["ManageCourses"] = manageCourses; _pages["AssignAdvisees"] = new AdminAssignAdviseesPage();
+
             _pages["Curriculum"] = new AdminCurriculumPage();
 
             foreach (UserControl page in _pages.Values)
@@ -46,9 +54,12 @@ namespace SCAIS.Admin
             foreach (UserControl p in _pages.Values)
                 p.Visible = false;
 
+            if (!_pages.ContainsKey(key)) return;
+
             _pages[key].Visible = true;
             _pages[key].BringToFront();
         }
+
 
         private void button6_Click(object sender, EventArgs e)
         {
@@ -95,5 +106,133 @@ namespace SCAIS.Admin
         {
 
         }
+
+        private void OpenEditUserPage(string userId)
+        {
+            // create a unique key for this edit page
+            string key = $"EditUser:{userId}";
+
+            // if page not created yet, create and register it
+            if (!_pages.ContainsKey(key))
+            {
+                var editPage = new AdminEditUsersPage(userId);
+
+                editPage.UserChanged += () =>
+                {
+                    // go back to ManageUsers
+                    ShowPage("ManageUsers");
+
+                    // refresh manage users grid
+                    if (_pages["ManageUsers"] is AdminManageUsersPage mu)
+                        mu.ReloadUsers();   // you must have this method
+                };
+
+                editPage.BackRequested += () =>
+                {
+                    ShowPage("ManageUsers");
+                };
+
+                editPage.Dock = DockStyle.Fill;
+                editPage.Visible = false;
+
+                _pages[key] = editPage;
+                pnlContent.Controls.Add(editPage);
+            }
+
+            ShowPage(key);
+        }
+        private void OpenAddUserPage()
+        {
+            string key = "AddUser";
+
+            if (!_pages.ContainsKey(key))
+            {
+                var addPage = new AdminAddUsersPage();
+
+                addPage.UserCreated += () =>
+                {
+                    // go back to ManageUsers
+                    ShowPage("ManageUsers");
+
+                    // refresh manage users grid
+                    if (_pages["ManageUsers"] is AdminManageUsersPage mu)
+                        mu.ReloadUsers();
+                };
+
+                addPage.BackRequested += () =>
+                {
+                    ShowPage("ManageUsers");
+                };
+
+                addPage.Dock = DockStyle.Fill;
+                addPage.Visible = false;
+
+                _pages[key] = addPage;
+                pnlContent.Controls.Add(addPage);
+            }
+
+            ShowPage(key);
+        }
+        private void OpenEditCoursePage(string courseCode)
+        {
+            string key = $"EditCourse:{courseCode}";
+
+            if (!_pages.ContainsKey(key))
+            {
+                var editPage = new AdminEditCoursesPage(courseCode);
+
+                editPage.CourseChanged += () =>
+                {
+                    ShowPage("ManageCourses");
+
+                    if (_pages["ManageCourses"] is AdminManageCoursesPage mc)
+                        mc.ReloadCourses();
+                };
+
+                editPage.BackRequested += () =>
+                {
+                    ShowPage("ManageCourses");
+                };
+
+                editPage.Dock = DockStyle.Fill;
+                editPage.Visible = false;
+
+                _pages[key] = editPage;
+                pnlContent.Controls.Add(editPage);
+            }
+
+            ShowPage(key);
+        }
+        private void OpenAddCoursePage()
+        {
+            string key = "AddCourse";
+
+            if (!_pages.ContainsKey(key))
+            {
+                var addPage = new AdminAddCoursePage();
+
+                addPage.CourseCreated += () =>
+                {
+                    ShowPage("ManageCourses");
+                    if (_pages["ManageCourses"] is AdminManageCoursesPage mc)
+                        mc.ReloadCourses();
+                };
+
+                addPage.BackRequested += () =>
+                {
+                    ShowPage("ManageCourses");
+                };
+
+                addPage.Dock = DockStyle.Fill;
+                addPage.Visible = false;
+
+                _pages[key] = addPage;
+                pnlContent.Controls.Add(addPage);
+            }
+
+            ShowPage(key);
+        }
+
+
     }
 }

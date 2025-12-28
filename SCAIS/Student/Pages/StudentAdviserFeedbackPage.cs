@@ -16,7 +16,7 @@ namespace SCAIS.Student.Pages
     public partial class StudentAdviserFeedbackPage : UserControl
     {
         // set from login/session
-        public string CurrentStudentId { get; set; } = "STU001";
+        public string CurrentStudentId { get; set; }
 
         private PrintDocument _printDoc;
         private PrintPreviewDialog _preview;
@@ -33,9 +33,10 @@ namespace SCAIS.Student.Pages
 
         private int _printCourseIndex = 0; // for multi-page
 
-        public StudentAdviserFeedbackPage()
+        public StudentAdviserFeedbackPage(string StudentId)
         {
             InitializeComponent();
+            CurrentStudentId = StudentId;
             SetupFlow();
             SetupPrinting();
         }

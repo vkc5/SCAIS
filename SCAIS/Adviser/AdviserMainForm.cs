@@ -8,28 +8,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace SCAIS.Adviser.Pages
 {
     public partial class AdviserMainForm : Form
     {
         private readonly Dictionary<string, UserControl> _pages =
         new Dictionary<string, UserControl>();
+        private readonly string _userId;
 
-        public AdviserMainForm()
+        public AdviserMainForm(string userId)
         {
             InitializeComponent();
+            _userId = userId;
+
             RegisterPages();
             ShowPage("Dashboard");
             this.StartPosition = FormStartPosition.CenterScreen;
         }
         private void RegisterPages()
         {
-            _pages["Dashboard"] = new AdviserDashboardPage();
-            _pages["MyAdvisees"] = new AdviserMyAdviseesPage();
-            _pages["RecommendedCourses"] = new AdviserRecommendedCoursesPage();
-            _pages["Reports"] = new AdviserReportsPage();
+            _pages["Dashboard"] = new AdviserDashboardPage(_userId);
+            _pages["MyAdvisees"] = new AdviserMyAdviseesPage(_userId);
+            _pages["RecommendedCourses"] = new AdviserRecommendedCoursesPage(_userId);
+            _pages["Reports"] = new AdviserReportsPage(_userId);
             _pages["StudentProfile"] = new AdviserStudentProfilePage();
-            _pages["PlanReview"] = new AdviserCoursePlanReviewPage();
+            _pages["PlanReview"] = new AdviserCoursePlanReviewPage(_userId);
 
             foreach (UserControl page in _pages.Values)
             {
@@ -57,10 +61,9 @@ namespace SCAIS.Adviser.Pages
                 ShowPage("Dashboard");
             };
 
-            // Recommended Courses → Plan Review
             rec.ViewPlanRequested += (coursePlanId) =>
             {
-                p2.CurrentAdviserId = "ADV001";
+                p2.CurrentAdviserId = _userId;          // ✅ use logged-in adviser id
                 p2.LoadPlan(coursePlanId);
                 ShowPage("PlanReview");
             };
@@ -122,7 +125,7 @@ namespace SCAIS.Adviser.Pages
         private void btnReports_Click(object sender, EventArgs e)
         {
             var reports = (AdviserReportsPage)_pages["Reports"];
-            reports.CurrentAdviserId = "ADV001";   // ✅ static for now
+            reports.CurrentAdviserId = _userId;        // ✅ use logged-in adviser id
             reports.RefreshPage();
             ShowPage("Reports");
 

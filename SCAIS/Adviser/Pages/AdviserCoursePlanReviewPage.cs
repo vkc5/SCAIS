@@ -19,7 +19,7 @@ namespace SCAIS.Adviser.Pages
     {
         public event Action BackRequested;
 
-        public string CurrentAdviserId { get; set; } = "ADV001"; // static now
+        public string CurrentAdviserId { get; set; }
         private string _planStatus;
 
         private string _coursePlanId;
@@ -29,9 +29,10 @@ namespace SCAIS.Adviser.Pages
         private DataTable _dtSelected;
         private DataTable _dtEligible;
 
-        public AdviserCoursePlanReviewPage()
+        public AdviserCoursePlanReviewPage(string adviserId)
         {
             InitializeComponent();
+            CurrentAdviserId = adviserId;
             SetupGrids();
             dgvEligibleCourses.CellValueChanged += EligibleCheckboxChanged;
             dgvEligibleCourses.CurrentCellDirtyStateChanged += (s, e) =>

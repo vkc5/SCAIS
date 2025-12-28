@@ -20,9 +20,10 @@ namespace SCAIS.Adviser.Pages
 
         private DataTable _dtStudentProgress;
         private DataTable _dtCourseProgression;
-        public AdviserReportsPage()
+        public AdviserReportsPage(string adviserId)
         {
             InitializeComponent();
+            CurrentAdviserId = adviserId;
             SetupGrids();
         }
 

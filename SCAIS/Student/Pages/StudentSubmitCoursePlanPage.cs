@@ -18,15 +18,16 @@ namespace SCAIS.Student.Pages
     public partial class StudentSubmitCoursePlanPage : UserControl
     {
         // ====== INPUT (set these from login/session) ======
-        public string CurrentStudentId { get; set; } = "STU001";
+        public string CurrentStudentId { get; set; }
         public int CurrentSemesterId { get; set; } = 6; // example: Spring 2026
 
         // ====== Builder Result ======
         private CoursePlanProduct _plan;
 
-        public StudentSubmitCoursePlanPage()
+        public StudentSubmitCoursePlanPage(string StudentId)
         {
             InitializeComponent();
+            CurrentStudentId = StudentId;
             SetupGrids();
         }
 

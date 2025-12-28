@@ -60,6 +60,19 @@ namespace SCAIS.Core.Database
                 return cmd.ExecuteScalar();
             }
         }
+        public static object Scalar(string sql, params SqlParameter[] ps)
+        {
+            using (SqlConnection con = new SqlConnection(ConnStr))
+            using (SqlCommand cmd = new SqlCommand(sql, con))
+            {
+                if (ps != null && ps.Length > 0)
+                    cmd.Parameters.AddRange(ps);
+
+                con.Open();
+                return cmd.ExecuteScalar();
+            }
+        }
+
     }
 }
 

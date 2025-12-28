@@ -16,7 +16,7 @@ namespace SCAIS.Adviser.Pages
     public partial class AdviserMyAdviseesPage : UserControl
     {
 
-        public string CurrentAdviserId { get; set; } = "ADV001";
+        public string CurrentAdviserId { get; set; }
 
         // later navigation
         public Action<string> ViewProfileRequested { get; set; }
@@ -24,9 +24,10 @@ namespace SCAIS.Adviser.Pages
 
         private DataTable _dtAdvisees;
 
-        public AdviserMyAdviseesPage()
+        public AdviserMyAdviseesPage(string adviserId)
         {
             InitializeComponent();
+            CurrentAdviserId = adviserId;
 
             // IMPORTANT properties
             flpCards.WrapContents = false;

@@ -15,9 +15,13 @@ namespace SCAIS.Student
     {
         private readonly Dictionary<string, UserControl> _pages =
             new Dictionary<string, UserControl>();
-        public StudentMainForm()
+        private readonly string _userId;
+
+        public StudentMainForm(string userId)
         {
             InitializeComponent();
+            _userId = userId;
+
             RegisterPages();
             ShowPage("Dashboard");
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -26,11 +30,11 @@ namespace SCAIS.Student
         private void RegisterPages()
         {
             // Create pages once (fast switching)
-            _pages["Dashboard"] = new StudentDashboardPage();
-            _pages["AcademicRecord"] = new StudentAcademicRecordPage();
-            _pages["EligibleCourses"] = new StudentEligibleCoursesPage();
-            _pages["SubmitPlan"] = new StudentSubmitCoursePlanPage();
-            _pages["Feedback"] = new StudentAdviserFeedbackPage();
+            _pages["Dashboard"] = new StudentDashboardPage(_userId);
+            _pages["AcademicRecord"] = new StudentAcademicRecordPage(_userId);
+            _pages["EligibleCourses"] = new StudentEligibleCoursesPage(_userId);
+            _pages["SubmitPlan"] = new StudentSubmitCoursePlanPage(_userId);
+            _pages["Feedback"] = new StudentAdviserFeedbackPage(_userId);
 
             // Add to pnlContent and hide
             foreach (var page in _pages.Values)

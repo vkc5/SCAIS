@@ -15,12 +15,13 @@ namespace SCAIS.Adviser.Pages
     public partial class AdviserDashboardPage : UserControl
     {
         // TODO: set this after login (logged-in adviser)
-        public string CurrentAdviserId { get; set; } = "ADV001";
+        public string CurrentAdviserId { get; set; }
         public Action<string> ViewStudentRequested { get; set; }
 
-        public AdviserDashboardPage()
+        public AdviserDashboardPage(string adviserId)
         {
             InitializeComponent();
+            CurrentAdviserId = adviserId;
             SetupGrid();
             LoadSpecializations();
             LoadAdvisees(); // initial load

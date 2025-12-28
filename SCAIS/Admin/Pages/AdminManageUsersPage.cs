@@ -9,276 +9,247 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using SCAIS.Core.Database;
-using SCAIS.Model;
 
 
 namespace SCAIS.Admin.Pages
 {
     public partial class AdminManageUsersPage : UserControl
     {
-
-        private List<User> allusers = new List<User>(); // this all users 
-        private List<User> users = new List<User>(); //this filltered users
-        private int currentPage = 1;
-        private int pageSize = 20; // 10 users per page
-        private int totalPages = 1;
-
-
+        private DataTable _usersTable;
+        public event Action<string> EditUserRequested; // sends UserID
+        public event Action AddUserRequested;
 
         public AdminManageUsersPage()
         {
             InitializeComponent();
-            LoadUsers();
-
-            txtSearch.TextChanged += TxtSearch_TextChanged;
-            roleFilter.SelectedIndexChanged += RoleFilter_SelectedIndexChanged;
+            SetupUi();
+            SetupGrid();
+            btnAddUser.Click += (s, e) => AddUserRequested?.Invoke();
 
         }
 
         private void AdminManageUsersPage_Load(object sender, EventArgs e)
         {
+            LoadRoles();
+            LoadUsers();
+        }
+        private void SetupUi()
+        {
+            cmbRole.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        private void LoadRoles()
+        {
+            cmbRole.Items.Clear();
+            cmbRole.Items.Add("All");
+            cmbRole.Items.Add("Admin");
+            cmbRole.Items.Add("Adviser");
+            cmbRole.Items.Add("Student");
+            cmbRole.SelectedIndex = 0;
+        }
+
+        // ---------- GRID ----------
+        private void SetupGrid()
+        {
+            dgvUsers.AllowUserToAddRows = false;
+            dgvUsers.AllowUserToDeleteRows = false;
+            dgvUsers.ReadOnly = true;
+            dgvUsers.RowHeadersVisible = false;
+            dgvUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvUsers.MultiSelect = false;
+            dgvUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvUsers.AutoGenerateColumns = false;
+            dgvUsers.Columns.Clear();
+
+            dgvUsers.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "colUserID",
+                HeaderText = "User ID",
+                DataPropertyName = "UserID",
+                FillWeight = 12
+            });
+
+            dgvUsers.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "colFullName",
+                HeaderText = "Full Name",
+                DataPropertyName = "FullName",
+                FillWeight = 25
+            });
+
+            dgvUsers.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "colRole",
+                HeaderText = "Role",
+                DataPropertyName = "Role",
+                FillWeight = 12
+            });
+
+            dgvUsers.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "colUsername",
+                HeaderText = "Username",
+                DataPropertyName = "Username",
+                FillWeight = 15
+            });
+
+            dgvUsers.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "colStatus",
+                HeaderText = "Status",
+                DataPropertyName = "Status",
+                FillWeight = 12
+            });
+
+            var editBtn = new DataGridViewButtonColumn
+            {
+                Name = "colEdit",
+                HeaderText = "Action",
+                Text = "Edit",
+                UseColumnTextForButtonValue = true,
+                FlatStyle = FlatStyle.Flat,
+                FillWeight = 8
+            };
+
+            dgvUsers.Columns.Add(editBtn);
+
+            dgvUsers.CellFormatting += dgvUsers_CellFormatting;
+            dgvUsers.CellContentClick += dgvUsers_CellContentClick;
 
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private void AddEditButtonColumn()
         {
-            ApplyFilters();
+            if (dgvUsers.Columns.Contains("colEdit")) return;
+
+            var editBtn = new DataGridViewButtonColumn
+            {
+                Name = "colEdit",
+                HeaderText = "Action",
+                Text = "Edit",
+                UseColumnTextForButtonValue = true,
+                FillWeight = 10
+            };
+
+            dgvUsers.Columns.Add(editBtn);
+        }
+
+        private void dgvUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            if (dgvUsers.Columns[e.ColumnIndex].Name != "colEdit") return;
+
+            string userId = dgvUsers.Rows[e.RowIndex].Cells["colUserID"].Value?.ToString();
+            if (string.IsNullOrWhiteSpace(userId)) return;
+
+            EditUserRequested?.Invoke(userId);
+        }
+
+
+
+        // Color role/status like your screenshot (simple style)
+        private void dgvUsers_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvUsers.Columns[e.ColumnIndex].Name == "colRole" && e.Value != null)
+            {
+                string role = e.Value.ToString();
+                e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                if (role.Equals("Adviser", StringComparison.OrdinalIgnoreCase))
+                {
+                    e.CellStyle.BackColor = Color.Honeydew;
+                    e.CellStyle.ForeColor = Color.DarkGreen;
+                    e.CellStyle.SelectionBackColor = Color.Honeydew;
+                    e.CellStyle.SelectionForeColor = Color.DarkGreen;
+                }
+                else if (role.Equals("Student", StringComparison.OrdinalIgnoreCase))
+                {
+                    e.CellStyle.BackColor = Color.AliceBlue;
+                    e.CellStyle.ForeColor = Color.RoyalBlue;
+                    e.CellStyle.SelectionBackColor = Color.AliceBlue;
+                    e.CellStyle.SelectionForeColor = Color.RoyalBlue;
+                }
+            }
+
+            if (dgvUsers.Columns[e.ColumnIndex].Name == "colStatus" && e.Value != null)
+            {
+                string status = e.Value.ToString();
+                e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                if (status.Equals("Active", StringComparison.OrdinalIgnoreCase))
+                {
+                    e.CellStyle.BackColor = Color.Honeydew;
+                    e.CellStyle.ForeColor = Color.DarkGreen;
+                    e.CellStyle.SelectionBackColor = Color.Honeydew;
+                    e.CellStyle.SelectionForeColor = Color.DarkGreen;
+                }
+                else if (status.Equals("Inactive", StringComparison.OrdinalIgnoreCase))
+                {
+                    e.CellStyle.BackColor = Color.MistyRose;
+                    e.CellStyle.ForeColor = Color.DarkRed;
+                    e.CellStyle.SelectionBackColor = Color.MistyRose;
+                    e.CellStyle.SelectionForeColor = Color.DarkRed;
+                }
+            }
+
+            // Center edit icon
+            if (dgvUsers.Columns[e.ColumnIndex].Name == "colEdit")
+            {
+                e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                e.CellStyle.Padding = new Padding(4);
+            }
+        }
+
+        // ---------- LOAD DATA ----------
+        private void LoadUsers()
+        {
+            string role = cmbRole.SelectedItem?.ToString() ?? "All";
+            string search = (txtSearch.Text ?? "").Trim();
+
+            string sql = @"
+SELECT 
+    UserID,
+    FullName,
+    Role,
+    Username,
+    [Status]
+FROM dbo.Users
+WHERE
+    (@role = 'All' OR Role = @role)
+AND (
+    @search = '' OR
+    UserID   LIKE '%' + @search + '%' OR
+    FullName LIKE '%' + @search + '%' OR
+    Username LIKE '%' + @search + '%' OR
+    Email    LIKE '%' + @search + '%'
+)
+ORDER BY UserID;";
+
+            _usersTable = Db.Query(sql,
+                new SqlParameter("@role", role),
+                new SqlParameter("@search", search)
+            );
+
+            dgvUsers.DataSource = _usersTable;
         }
 
         private void btnFilter_Click(object sender, EventArgs e)
         {
-            ApplyFilters();
+            LoadUsers();
         }
 
-       
-        private void userGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+                private void txtSearch_KeyDown(object sender, KeyEventArgs e)
         {
-            // Ignore header clicks
-            if (e.RowIndex < 0) return;
-
-            var userId = userGridView.Rows[e.RowIndex].Cells["UserID"].Value.ToString();
-
-            if (userGridView.Columns[e.ColumnIndex].Name == "Edit")
+            if (e.KeyCode == Keys.Enter)
             {
-                string fullName = userGridView.Rows[e.RowIndex].Cells["FullName"].Value?.ToString() ?? "";
-                string role = userGridView.Rows[e.RowIndex].Cells["Role"].Value?.ToString() ?? "";
-                string username = userGridView.Rows[e.RowIndex].Cells["Username"].Value?.ToString() ?? "";
-                string status = userGridView.Rows[e.RowIndex].Cells["Status"].Value?.ToString() ?? "";
-
-                // update database
-                string sql = @"
-                    UPDATE dbo.Users
-                    SET FullName = @FullName,
-                        Role = @Role,
-                        Username = @Username,
-                        [Status] = @Status
-                    WHERE UserID = @UserID
-                ";
-
-                SqlParameter[] param = new SqlParameter[]
-                {
-                    new SqlParameter("@FullName", fullName),
-                    new SqlParameter("@Role", role),
-                    new SqlParameter("@Username", username),
-                    new SqlParameter("@Status", status),
-                    new SqlParameter("@UserID", userId)
-                };
-
-                Db.Query(sql, param);
-
-                // Update local list
-                var user = allusers.FirstOrDefault(u => u.UserID == userId);
-                if (user != null)
-                {
-                    user.FullName = fullName;
-                    user.Role = role;
-                    user.Username = username;
-                    user.Status = status;
-                }
-
-                MessageBox.Show("User updated successfully!", "Success", MessageBoxButtons.OK);
-
-                // Refresh grid
-                FillGrid(users);
-            }
-
-            if (userGridView.Columns[e.ColumnIndex].Name == "Delete")
-            {
-                DeleteUser(userId);
+                e.SuppressKeyPress = true;
+                LoadUsers();
             }
         }
 
-        private void LoadUsers()
+        public void ReloadUsers()
         {
-            string sql = @"
-                SELECT 
-                    UserID,
-                    Username,
-                    FullName,
-                    Role,
-                    [Status]
-                FROM dbo.Users
-                ORDER BY FullName;
-            ";
-
-            DataTable dt = Db.Query(sql);
-
-            allusers.Clear();
-            users.Clear();
-
-            foreach (DataRow r in dt.Rows)
-            {
-                User user = new User
-                {
-                    UserID = r["UserID"].ToString(),
-                    Username = r["Username"].ToString(),
-                    FullName = r["FullName"].ToString(),
-                    Role = r["Role"].ToString(),
-                    Status = r["Status"].ToString()
-                };
-
-                allusers.Add(user);
-            }
-
-            users = new List<User>(allusers);
-            FillGrid(users);
-
-            if (roleFilter.Items.Count > 0)
-                roleFilter.SelectedIndex = 0;
-        }
-
-        private void FillGrid(List<User> list)
-        {
-            userGridView.Rows.Clear();
-
-
-            if (list == null || list.Count == 0)
-            {
-                userNumLab.Text = "0 of 0 users";
-                return;
-            }
-
-            totalPages = (int)Math.Ceiling(list.Count / (double)pageSize);
-
-            //  currentPage
-            if (currentPage > totalPages) currentPage = totalPages;
-            if (currentPage < 1) currentPage = 1;
-
-            //for pagination
-            var pagedUsers = list
-                .Skip((currentPage - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
-
-            foreach (var u in pagedUsers)
-            {
-                userGridView.Rows.Add(
-                    u.UserID,
-                    u.FullName,
-                    u.Role,
-                    u.Username,
-                    u.Status,
-                    "Edit",
-                    "Delete"
-                );
-            }
-
-            // update label
-            int start = (currentPage - 1) * pageSize + 1;
-            int end = start + pagedUsers.Count - 1;
-            userNumLab.Text = $"{start}-{end} of {list.Count} users";
-
-            // Enable/disable buttons
-            backBtn.Enabled = currentPage > 1;
-            NextBtn.Enabled = currentPage < totalPages;
-        }
-
-
-
-
-        private void TxtSearch_TextChanged(object sender, EventArgs e)
-        {
-            ApplyFilters();
-        }
-
-        private void RoleFilter_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
-        //  both username search and role filter
-        private void ApplyFilters()
-        {
-            string search = txtSearch.Text.Trim().ToLower();
-            string role = roleFilter.SelectedItem?.ToString() ?? "All User";
-
-            var filtered = allusers.Where(u =>
-                (role == "All User" || u.Role.Equals(role, StringComparison.OrdinalIgnoreCase)) &&
-                (string.IsNullOrEmpty(search) || u.Username.ToLower().Contains(search))
-            ).ToList();
-
-            users = filtered;
-
-            currentPage = 1;
-            FillGrid(users);
-        }
-
-        private void NextBtn_Click(object sender, EventArgs e)
-        {
-            if (currentPage < totalPages)
-            {
-                currentPage++;
-                FillGrid(users);
-            }
-        }
-
-        private void backBtn_Click(object sender, EventArgs e)
-        {
-            if (currentPage > 1)
-            {
-                currentPage--;
-                FillGrid(users);
-            }
-        }
-
-        private void userNumLab_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        // Delete user method
-        private void DeleteUser(string userId)
-        {
-            if (MessageBox.Show("Are you sure you want to delete this user?", "Confirm Delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                // Delete from database
-                string sql = "DELETE FROM dbo.Users WHERE UserID = @UserID";
-                SqlParameter[] param = new SqlParameter[]
-                {
-                    new SqlParameter("@UserID", userId)
-                };
-                Db.Query(sql, param);
-
-                // Remove from local lists
-                var user = allusers.FirstOrDefault(u => u.UserID == userId);
-                if (user != null)
-                    allusers.Remove(user);
-
-                users.RemoveAll(u => u.UserID == userId);
-
-                // Refresh grid
-                FillGrid(users);
-            }
-        }
-
-        private void AddUserBtn_Click(object sender, EventArgs e)
-        {
-            Form form = new Form();
-            AdminAddUserPage addUserPage = new AdminAddUserPage();
-            addUserPage.Dock = DockStyle.Fill; // fill the form
-            form.Controls.Add(addUserPage);
-            form.StartPosition = FormStartPosition.CenterScreen;
-            form.Size = new Size(600, 400); // adjust size as needed
-            form.Show(); // show the form
+            LoadUsers(); // your existing method that fills dgv
         }
 
     }

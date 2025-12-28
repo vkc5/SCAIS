@@ -39,7 +39,9 @@ namespace SCAIS.Admin
             manageCourses.AddCourseRequested += OpenAddCoursePage;    // ✅ hook add (we’ll add event below)
             _pages["ManageCourses"] = manageCourses; _pages["AssignAdvisees"] = new AdminAssignAdviseesPage();
 
-            _pages["Curriculum"] = new AdminCurriculumPage();
+            var curriculum = new AdminCurriculumPage();
+            curriculum.EditCurriculumStructureRequested += OpenCurriculumStructurePage;
+            _pages["Curriculum"] = curriculum;
 
             foreach (UserControl page in _pages.Values)
             {
@@ -63,8 +65,15 @@ namespace SCAIS.Admin
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            var confirm = MessageBox.Show(
+                "Are you sure you want to logout?",
+                "Logout",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
 
+            if (confirm != DialogResult.Yes) return;
+
+            this.Close(); // ✅ this will trigger Login.Show()
         }
 
         private void AdminMainForm_Load(object sender, EventArgs e)
@@ -228,6 +237,31 @@ namespace SCAIS.Admin
 
                 _pages[key] = addPage;
                 pnlContent.Controls.Add(addPage);
+            }
+
+            ShowPage(key);
+        }
+        private void OpenCurriculumStructurePage()
+        {
+            string key = "CurriculumStructure";
+
+            if (!_pages.ContainsKey(key))
+            {
+                var page = new AdminCurriculumStructurePage();
+
+                page.BackRequested += () => ShowPage("Curriculum");
+
+                page.StructureSaved += () =>
+                {
+                    // optional: refresh curriculum page if you want
+                    ShowPage("Curriculum");
+                };
+
+                page.Dock = DockStyle.Fill;
+                page.Visible = false;
+
+                _pages[key] = page;
+                pnlContent.Controls.Add(page);
             }
 
             ShowPage(key);

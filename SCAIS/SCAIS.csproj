@@ -98,6 +98,12 @@
     <Compile Include="Admin\Pages\AdminCurriculumPage.Designer.cs">
       <DependentUpon>AdminCurriculumPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Pages\AdminCurriculumStructurePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Admin\Pages\AdminCurriculumStructurePage.Designer.cs">
+      <DependentUpon>AdminCurriculumStructurePage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Pages\AdminDashboardPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -241,6 +247,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\Pages\AdminCurriculumPage.resx">
       <DependentUpon>AdminCurriculumPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Pages\AdminCurriculumStructurePage.resx">
+      <DependentUpon>AdminCurriculumStructurePage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\Pages\AdminDashboardPage.resx">
       <DependentUpon>AdminDashboardPage.cs</DependentUpon>

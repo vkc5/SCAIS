@@ -22,6 +22,8 @@ namespace SCAIS.Admin.Pages
         private DataTable _printAllRows;
         private int _printRowIndex = 0;
 
+        public event Action EditCurriculumStructureRequested;
+
         // Keep loaded tables so we can save changes later
         private readonly Dictionary<int, DataTable> _specTables = new Dictionary<int, DataTable>();
 
@@ -424,7 +426,9 @@ WHERE SpecializationID = @sid AND CourseCode = @code;", con, tx))
             e.HasMorePages = false;
         }
 
-
-
+        private void button1_Click(object sender, EventArgs e)
+        {
+            EditCurriculumStructureRequested?.Invoke();
+        }
     }
 }

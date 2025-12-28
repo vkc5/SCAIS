@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentMainForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlSidebar = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
@@ -82,7 +83,7 @@
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(283, 63);
             this.button6.TabIndex = 2;
-            this.button6.Text = "Exit";
+            this.button6.Text = "logout";
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
@@ -245,6 +246,7 @@
             this.Controls.Add(this.pnlContent);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "StudentMainForm";
             this.Text = "StudentMainForm";
             this.Load += new System.EventHandler(this.StudentMainForm_Load);

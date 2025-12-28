@@ -96,7 +96,15 @@ namespace SCAIS.Student
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            var confirm = MessageBox.Show(
+                "Are you sure you want to logout?",
+                "Logout",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (confirm != DialogResult.Yes) return;
+
+            this.Close(); // ✅ this will trigger Login.Show()
         }
 
         private void StudentMainForm_Load(object sender, EventArgs e)
